@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Statistics
+
+{% endblock %}
+
+{% block main %}
+
+<h2>Total number of days you've been tracking your productivity and mood: {{ days }}</h2>
+<h2>Average productivity (all-time): {{ pavg }}</h2>
+<h2>Average mood (all-time): {{ mavg }}</h2>
+<h2>Percentage of days where mood and productivity have been 7 or higher: {{ percent }}%</h2>
+<h2>Average productivity over past 10 entries: {{ pavg10 }}</h2>
+<h2>Average mood over past 10 entries: {{ mavg10 }}</h2>
+
+{% endblock %}

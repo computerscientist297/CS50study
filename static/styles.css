@@ -1,0 +1,128 @@
+body {
+    background-color: #d1edfa;
+    color: #212529;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+}
+
+
+.button_down {
+    margin-top: 40px;
+}
+
+.down {
+    margin-bottom: 45px;
+}
+
+
+#navtext {font-family: 'avenir';
+    color: #1d1a1f;
+    font-size: 16px;
+    font-weight: 400;
+}
+#quote {
+    font-family: 'avenir';
+    color: #1d1a1f;
+    font-size: 30px;
+    text-align: center;
+}
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    width: 90%;
+    background-color: #d1edfa;
+
+}
+.directoryimg{
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 15px;
+    padding-top: 30px;
+    text-align: center;
+    width: 90%;
+}
+.container:hover {
+    background-color: #e9effd;
+    transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
+
+}
+
+
+.header {
+    background-color: #d1edfa;
+    color: #d1edfa;
+    margin-bottom: 2rem;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+#productivity {
+    text-align: center;
+}
+
+#mood {
+    text-align: center;
+    }
+.section {
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+}
+
+
+h1 {
+    font-family: 'avenir';
+    padding-bottom: 1rem;
+    font-size: 48px;}
+h2{
+    font-family: 'avenir';
+    font-size: 32px;
+}
+
+button, input[type="submit"] {
+    background-color: #7591d6;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    vertical-align: middle;
+}
+
+input[type="text"], input[type="number"] {
+    line-height: 1.8;
+    width: 25%;
+}
+
+input[type="text"]:hover, input[type="number"]:hover {
+    background-color: #f5f5f5;
+    transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+table {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(179, 208, 255, 0.3)
+}
+

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Motivation
+{% endblock %}
+
+{% block main %}
+<div class="container text-center">
+<h1>Progress</h1>
+</div>
+
+<!--Grid from https://getbootstrap.com/docs/5.2/layout/grid/-->
+<div class="container text-center">
+    <div class="row">
+        <div class="col-8">
+        <!--<meta http-equiv="refresh" content="10">-->
+        {% if active_task %}
+        <h2>You are currently working on: {{ active_task }}. You are {{ rounded_percentage }}% the way there, keep it up!</h2>
+        {% else %}
+        <h2>You are not working on any tasks at the moment! Taking a break is a good idea too. You've currently completed {{ task_count }} tasks!</h2>
+        {% endif %}
+        </div>
+
+        <!-- table-->
+        <div class="col-4" id="quote">
+          {{ motivation["q"] }}
+            <div id="quote">
+                - {{ motivation["a"] }}
+            </div>
+        </div>
+    </div>
+        {% if finished_tasks %}
+        <h2>Your finished tasks!</h2>
+        <div class="container text-center"></div>
+        <div class="row">
+             <table class="center" class="table table-striped" style:text_aligclass="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Subject</th>
+                          <th>Task</th>
+                          <th>Duration (min)</th>
+                          <th>Started</th>
+                          <th>Ended</th>
+                          <th>Elapsed (min)</th>
+                          <th>Overtime (min)</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for finished_task in finished_tasks %}
+                      <tr>
+                          <td>{{ finished_task.subject }} </td>
+                          <td>{{ finished_task.task_name }}</td>
+                          <td>{{ finished_task.duration }}</td>
+                          <td>{{ finished_task.start }}</td>
+                          <td>{{ finished_task.end }}</td>
+                          <td>{{ finished_task.elapsed }}</td>
+                          {% if finished_task.overtime %}
+                          <td>{{ finished_task.overtime }}</td>
+                          {% else %}
+                          <td>N/A</td>
+                          {% endif %}
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+        </div>
+        <p>Note: Table is limited to 10 of the most recent completed tasks at once! </p>
+        {% endif %}
+      </div>
+</div>
+
+
+{% endblock %}

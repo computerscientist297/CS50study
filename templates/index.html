@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+<h1 class="down">CS50 Study</h1>
+<div class="container">
+    <div class="section">
+
+        <h2>Add a task!</h2>
+        <form action="/" method="POST">
+            <input name="subject" autocomplete="off" placeholder="Subject" type="text" maxlength="40">
+            <input name="task_name" autocomplete="off" type="text" placeholder="Task" maxlength="40">
+            <input type="submit" class="btn btn-default" value="Add Task" name="task_add" id="task_add">
+        </form>
+    </div>
+
+    <div class="section">
+
+        {% if active_task %}
+        <h2>Your Current Task</h2>
+        <div class="container text-center"></div>
+            <div class="row">
+                <div class="col-10">
+                    <table class="table table-striped" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Task</th>
+                                <th>Duration (min)</th>
+                                <th>Started</th>
+                                <th>Elapsed (min)</th>
+                                <th>Overtime (min)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ active_task[0].subject }} </td>
+                                <td>{{ active_task[0].task_name }}</td>
+                                <td>{{ active_task[0].duration }}</td>
+                                <td id="start_time">{{ active_task[0].start }}</td>
+                                {% if active_task[0].elapsed %}
+                                <td>{{ active_task[0].elapsed }}</td>
+                                {% else %}
+                                <td>N/A</td>
+                                {% endif %}
+                                {% if active_task[0].overtime %}
+                                <td id="overtime">{{ active_task[0].overtime }}</td>
+                                {% else %}
+                                <td>N/A</td>
+                                {% endif %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-2">
+                    <form action="/" method="POST">
+                        <button class="btn btn-primary button_down" type="submit" id="update_task" name="update_task">Update</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+
+        {% endif %}
+
+        {% if tasks %}
+        <h2>Your Upcoming Tasks</h2>
+        <table class="table table-striped" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Task</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.subject }}</td>
+                    <td>{{ task.task_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+
+<!--Grid from bootstrap: https://getbootstrap.com/docs/5.2/layout/grid/-->
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+        <h2>Start a task!</h2>
+        <form action="/" method="POST">
+            <div class="mb-3">
+                {% if current_start == 0 %}
+                <select class="form-select mx-auto w-auto" name="started_task" id="started_task">
+                    <option disabled selected>Task</option>
+                    {% for task in tasks %}
+                        <option>{{ task.task_name }}</option>
+                        <!--<input type="hidden" id="{{ task.id }}">-->
+                    {% endfor %}
+                </select>
+
+                {% else %}
+                <select class="form-select mx-auto w-auto" disabled>
+                    <option></option>
+                </select>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {% if current_start == 0 %}
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="duration" name="duration" placeholder="Planned duration (mins)" type="number" min="1">
+                {% else %}
+                <input disabled autocomplete="off" autofocus class="form-control mx-auto w-auto" placeholder="Task started!">
+                {% endif %}
+            </div>
+
+            {% if current_start == 0 %}
+            <button class="btn btn-primary" type="submit" name="task_start" id="task_start">Start!</button>
+            {% else %}
+            <button class="btn btn-primary" type="submit" disabled>Started!</button>
+            {% endif %}
+            {% if current_start != 0 %}
+            <button class="btn btn-danger" type="submit" name="task_finish" id="task_finish">Finish!</button>
+            {% else %}
+            <button class="btn btn-danger" disabled type="submit">Finish!</button>
+            {% endif %}
+        </form>
+        </div>
+
+        <div class="col">
+        <h2>Remove a task!</h2>
+        <form action="/" method="POST">
+            <div class="mb-3">
+                <select class="form-select mx-auto w-auto" name="delete_task" id="delete_task">
+                    <option disabled selected>Task</option>
+                    {% if active_task %}
+                    <option>{{ active_task[0].task_name }}</option>
+                    {% endif %}
+                    {% for task in tasks %}
+                        <option>{{ task.task_name }}</option>
+                        <!--<input type="hidden" id="{{ task.id }}">-->
+                    {% endfor %}
+                </select>
+        </div>
+        <button class="btn btn-primary" type="submit" name="task_delete" id="task_delete">Delete!</button>
+        </form>
+
+{% endblock %}

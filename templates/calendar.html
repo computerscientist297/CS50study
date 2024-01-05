@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Calendar
+
+{% endblock %}
+
+{% block head %}
+
+<script src="static/main.js"></script>
+
+{% endblock %}
+
+
+<!--Prompt user to input productivity score and mood score-->
+
+{% block main %}
+<div class="container text-center">
+<h1>Calendar</h1>
+</div>
+
+<div class="container">
+	<form action="/calendar" method="post">
+		<div class="mb-3">
+			<input autocomplete="off" autofocus class="form-control mx-auto w-1" id="productivity" name="productivity" placeholder="Productivity Score" type="number" min="0" max="10">
+		</div>
+		<div class="mb-3">
+			<input autocomplete="off" autofocus class="form-control mx-auto w-1" id="mood" name="mood" placeholder="Mood Score" type="number" min="0" max="10">
+		</div>
+		<button class="btn btn-primary" type="submit">Submit scores</button>
+	</form>
+</div>
+
+<div style="display:flex;justify-content:center">
+<table style="max-width: 1000px">
+	<thead>
+		<tr>
+			<th scope="col" class="text-center">Date</th>
+			<th scope="col" class="text-center">Productivity</th>
+			<th scope="col" class="text-center">Mood</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		{% for line in lines %}
+			<tr>
+				<td class="text-center"> {{ line.date }} </td>
+				<td class="text-center calendar_p"> {{ line.pscore }} </td>
+				<td class="text-center calendar_m"> {{ line.mscore }} </td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+
+
+{% endblock %}
